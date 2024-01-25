@@ -97,10 +97,8 @@ public class PlayerMotor : MonoBehaviour
 
     private void AttackRaycast()
     {
-        Debug.Log("Attack raycast!");
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackRange, attackLayer))
         {
-            Debug.Log("Attacking!");
             HitTarget(hit);
             if(hit.transform.TryGetComponent<HittableObject>(out HittableObject target)){
                 target.TakeDamage(attackDamage);
