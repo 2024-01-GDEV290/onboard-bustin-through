@@ -6,6 +6,7 @@ public class HittableObject : MonoBehaviour
 {
     public int currentHealth;
     public int maxHealth;
+    public GameObject hitDecal; // This should be a prefab made up of two quads facing opposite directions with a transparent texture on each
 
     [Header("Audio")]
     public AudioClip[] impacts;

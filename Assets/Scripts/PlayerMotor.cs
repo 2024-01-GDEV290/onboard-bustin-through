@@ -23,7 +23,6 @@ public class PlayerMotor : MonoBehaviour
     public int attackDamage = 1;
     public LayerMask attackLayer;
 
-    public GameObject hitEffect;
     public AudioClip swingSound;
     public AnimationClip swingAnimation;
     bool attacking = false;
@@ -108,12 +107,16 @@ public class PlayerMotor : MonoBehaviour
 
     private void HitTarget(RaycastHit hit)
     {
+        
         Vector3 pos = hit.point;
         HittableObject target = hit.transform.GetComponent<HittableObject>();
-        audioSource.pitch = 1;
+        GameObject hitDecal = target.hitDecal;
+        audioSource.pitch = 1; // Might randomize pitch later
         audioSource.PlayOneShot(target.GetCurrentImpactSound());
-        GameObject GO = Instantiate(hitEffect, pos, Quaternion.identity);
-        Destroy(GO, 20);
+        GameObject GO = Instantiate(hitDecal, pos, Quaternion.identity);
+        GO.transform.SetParent(hit.transform);
+        GO.transform.localRotation = Quaternion.identity; // Resetting the local rotation of the decal object so it appears on the surface of the glass regardless of angle. 
+        //Destroy(GO, 5);
     }
 
     public void ProcessLook(Vector2 input)

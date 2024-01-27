@@ -367,6 +367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 3
+  hitDecal: {fileID: 6260670309481816945, guid: fc2ee033bbe16a440a96fadeb6b30b0b,
+    type: 3}
   impacts:
   - {fileID: 8300000, guid: 3ba0248f47c584e42b4e63e59d26a753, type: 3}
   - {fileID: 8300000, guid: bcb2c6989f947854488c77e37d32e921, type: 3}
