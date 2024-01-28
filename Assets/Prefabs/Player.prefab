@@ -804,6 +804,7 @@ GameObject:
   - component: {fileID: 3082564925735073102}
   - component: {fileID: 970156494332731376}
   - component: {fileID: 5970174858966125227}
+  - component: {fileID: 2138105951924373870}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -938,8 +939,6 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 64
-  hitEffect: {fileID: 8017941996718910854, guid: 6784cbb6ba250eb469b2a5c72ad5d86d,
-    type: 3}
   swingSound: {fileID: 8300000, guid: 9a19ec01896b8a143b69eb790c18ffd4, type: 3}
   swingAnimation: {fileID: 7400000, guid: 2711bf7b8da5d504aba8823d20cd0f47, type: 2}
   cam: {fileID: 5982676791105650369}
@@ -1041,3 +1040,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &2138105951924373870
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5795047624706965670}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

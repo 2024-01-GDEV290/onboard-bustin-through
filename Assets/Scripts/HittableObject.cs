@@ -4,37 +4,18 @@ using UnityEngine;
 
 public class HittableObject : MonoBehaviour
 {
-    [SerializeField] private int currentHealth;
-    [SerializeField] private int maxHealth;
-    [SerializeField] private GameObject hitDecal; // This should be a prefab made up of two quads facing opposite directions with a transparent texture on each
+    public int currentHealth = 0;
+    public int maxHealth = 3;
+    [SerializeField] private Material transparentMaterial;
 
-    [Header("Audio")]
-    public AudioSource audioSource;
-    public AudioClip[] impacts;
+    [SerializeField] private GameObject hitDecal; // This should be a prefab made up of two quads facing opposite directions with a transparent texture on each
+    public HittableObjectParent parent;
+
     // Start is called before the first frame update
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        parent = transform.parent.GetComponent<HittableObjectParent>();
         currentHealth = maxHealth;
-    }
-
-    // Update is called once per frame
-    public void TakeDamage(int damage, Vector3 hitPos)
-    {
-        PlayHitSound(); 
-        currentHealth -= damage;
-        ShowDamage(hitPos);
-        Debug.Log($"{this.name} has taken damage!");
-        if (currentHealth <= 0 ) {
-            Invoke(nameof(Death), 2);
-                }
-    }
-
-    public void PlayHitSound()
-    {
-        // Play the sound for this object getting hit at its current health level;
-        audioSource.pitch = 1; // Might randomize pitch later
-        audioSource.PlayOneShot(GetCurrentImpactSound());
     }
 
     public void ShowDamage(Vector3 pos) {
@@ -43,14 +24,22 @@ public class HittableObject : MonoBehaviour
         GO.transform.localRotation = Quaternion.identity; // Resetting the local rotation of the decal object so it appears on the surface of the glass regardless of angle. 
         //Destroy(GO, 5);
     }
-    void Death()
+
+    public void TakeDamage(int damage, Vector3 hitPos, Vector3 hitOrigin)
     {
-        // Replace this with whatever we make the breaking behavior
-        Destroy(gameObject);
+        parent.PlayHitSound();
+        currentHealth -= damage;
+        ShowDamage(hitPos);
+        Debug.Log($"{this.name} has taken damage!");
+        if (currentHealth <= 0)
+        {
+            parent.Shatter(hitPos, hitOrigin);
+        } else if (currentHealth != maxHealth) {
+            parent.ShowFragments();
+            Color newColor = GetComponent<MeshRenderer>().material.color;
+            newColor.a = 0;
+            GetComponent<MeshRenderer>().material = transparentMaterial;
+        }
     }
 
-    private AudioClip GetCurrentImpactSound()
-    {
-        return impacts[maxHealth - currentHealth];
-    }
 }

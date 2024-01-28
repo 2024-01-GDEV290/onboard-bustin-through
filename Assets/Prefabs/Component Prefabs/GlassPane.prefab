@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6531172072207972338}
   - component: {fileID: 2721902034909881651}
   m_Layer: 6
-  m_Name: TestGlass
+  m_Name: GlassPane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,13 +368,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 3
+  transparentMaterial: {fileID: 2100000, guid: 0c7e3365ab85a9e4ba883788ec7c25ec, type: 2}
   hitDecal: {fileID: 6260670309481816945, guid: fc2ee033bbe16a440a96fadeb6b30b0b,
     type: 3}
-  audioSource: {fileID: 0}
-  impacts:
-  - {fileID: 8300000, guid: 3ba0248f47c584e42b4e63e59d26a753, type: 3}
-  - {fileID: 8300000, guid: bcb2c6989f947854488c77e37d32e921, type: 3}
-  - {fileID: 8300000, guid: 08c47770cfd407d4bbe8e2d6c6e80f7f, type: 3}
+  parent: {fileID: 0}
 --- !u!82 &2721902034909881651
 AudioSource:
   m_ObjectHideFlags: 0

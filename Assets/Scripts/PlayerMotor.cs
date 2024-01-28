@@ -113,9 +113,11 @@ public class PlayerMotor : MonoBehaviour
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackRange, attackLayer))
         {
             if(hit.transform.TryGetComponent(out HittableObject target)){
-                target.TakeDamage(attackDamage, hit.point);
+                target.TakeDamage(attackDamage, hit.point, transform.position);
             }
+;
         }
+
     }
 
 
