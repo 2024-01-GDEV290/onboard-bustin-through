@@ -62,6 +62,20 @@ public class PlayerMotor : MonoBehaviour
 
     }
 
+    public void ProcessLook(Vector2 input)
+    {
+        float mouseX = input.x;
+        float mouseY = input.y;
+
+        // calculate camera rotation for looking up and down
+        xRotation -= (mouseY * Time.deltaTime) * ySensitivity;
+        xRotation = Mathf.Clamp(xRotation, -80, 80f);
+        cam.transform.localRotation = Quaternion.Euler(xRotation, 0.0f, 0.0f);
+
+        // Rotate player to look horizontally
+        transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);
+    }
+
     public void Jump()
     {
         if (isGrounded)
@@ -98,38 +112,11 @@ public class PlayerMotor : MonoBehaviour
     {
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackRange, attackLayer))
         {
-            HitTarget(hit);
-            if(hit.transform.TryGetComponent<HittableObject>(out HittableObject target)){
-                target.TakeDamage(attackDamage);
+            if(hit.transform.TryGetComponent(out HittableObject target)){
+                target.TakeDamage(attackDamage, hit.point);
             }
         }
     }
 
-    private void HitTarget(RaycastHit hit)
-    {
-        
-        Vector3 pos = hit.point;
-        HittableObject target = hit.transform.GetComponent<HittableObject>();
-        GameObject hitDecal = target.hitDecal;
-        audioSource.pitch = 1; // Might randomize pitch later
-        audioSource.PlayOneShot(target.GetCurrentImpactSound());
-        GameObject GO = Instantiate(hitDecal, pos, Quaternion.identity);
-        GO.transform.SetParent(hit.transform);
-        GO.transform.localRotation = Quaternion.identity; // Resetting the local rotation of the decal object so it appears on the surface of the glass regardless of angle. 
-        //Destroy(GO, 5);
-    }
 
-    public void ProcessLook(Vector2 input)
-    {
-        float mouseX = input.x;
-        float mouseY = input.y;
-
-        // calculate camera rotation for looking up and down
-        xRotation -= (mouseY * Time.deltaTime) * ySensitivity;
-        xRotation = Mathf.Clamp(xRotation, -80, 80f);
-        cam.transform.localRotation = Quaternion.Euler(xRotation, 0.0f, 0.0f);
-
-        // Rotate player to look horizontally
-        transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);
-    }
 }
