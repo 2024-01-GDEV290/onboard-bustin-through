@@ -3615,6 +3615,11 @@ PrefabInstance:
       propertyPath: attackRange
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2138105951924373870, guid: cdbee920261a5ad4d9afcfc10101cd04,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2680993243325866458, guid: cdbee920261a5ad4d9afcfc10101cd04,
         type: 3}
       propertyPath: m_Mesh
