@@ -9,7 +9,7 @@ public class HittableObjectParent : MonoBehaviour
 
     [SerializeField] private HittableObject primaryObject; // The gameobject containing the main mesh for the object
     [SerializeField] private List<GameObject> fragments;
-    [SerializeField] private float fragmentScatter = 1.5f; 
+
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip[] impacts;
