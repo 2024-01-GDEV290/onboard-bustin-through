@@ -14,6 +14,8 @@ public class HittableObjectParent : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] impacts;
 
+    public GameObject shatteredGlass;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -23,29 +25,19 @@ public class HittableObjectParent : MonoBehaviour
     public void Shatter(Vector3 hitLocation, Vector3 hitOrigin)
     {
         Destroy(primaryObject.gameObject);
-        fragments.ForEach(fragment =>
-        {
-            Rigidbody fragRB = fragment.gameObject.GetComponent<Rigidbody>();
-/*            fragment.gameObject.SetActive(true);*/
-            fragRB.isKinematic = false;
-            Vector3 scatter = new Vector3(Random.Range(-fragmentScatter, fragmentScatter), Random.Range(-fragmentScatter, fragmentScatter), Random.Range(-fragmentScatter, fragmentScatter));
-            fragRB.AddForce((transform.position - hitOrigin) + scatter, ForceMode.Impulse);
-        }
-           );
+
+        GameObject shattered = Instantiate(shatteredGlass, transform.position, Quaternion.identity);
+        shattered.transform.localEulerAngles = new Vector3(0, -90, 0);
+
         Debug.Log($"{this.name} has shattered!");
     }
-    public void ShowFragments()
-    {
-        fragments.ForEach(fragment => { 
-        fragment.gameObject.SetActive(true);
-        });
-    }
+  
 
     public void PlayHitSound()
     {
         // Play the sound for this object getting hit at its current health level;
         audioSource.pitch = 1; // Might randomize pitch later
-        audioSource.PlayOneShot(GetCurrentImpactSound());
+        //audioSource.PlayOneShot(GetCurrentImpactSound());
     }
 
     private AudioClip GetCurrentImpactSound()

@@ -23,7 +23,7 @@ public class HittableObject : MonoBehaviour
     {
         GameObject decal = Instantiate(hitDecal, pos, Quaternion.identity);
         decal.transform.SetParent(transform);
-        decal.transform.localRotation = Quaternion.identity; // Resetting the local rotation of the decal object so it appears on the surface of the glass regardless of angle.
+        decal.transform.localEulerAngles = new Vector3(90, 0, 0); // Resetting the local rotation of the decal object so it appears on the surface of the glass regardless of angle.
         Vector3 diff = hitOrigin - pos;
         if (Vector3.Angle(diff, pos) > 90){
             // Orienting the decal to the correct direction so the particle system is facing towards the side the player is on. 
@@ -40,11 +40,6 @@ public class HittableObject : MonoBehaviour
         if (currentHealth <= 0)
         {
             parent.Shatter(hitPos, hitOrigin);
-        } else if (currentHealth != maxHealth) {
-            parent.ShowFragments();
-            Color newColor = GetComponent<MeshRenderer>().material.color;
-            newColor.a = 0;
-            GetComponent<MeshRenderer>().material = transparentMaterial;
         }
     }
 
