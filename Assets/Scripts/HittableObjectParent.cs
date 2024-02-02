@@ -37,7 +37,7 @@ public class HittableObjectParent : MonoBehaviour
     {
         // Play the sound for this object getting hit at its current health level;
         audioSource.pitch = 1; // Might randomize pitch later
-        //audioSource.PlayOneShot(GetCurrentImpactSound());
+        audioSource.PlayOneShot(GetCurrentImpactSound());
     }
 
     private AudioClip GetCurrentImpactSound()
