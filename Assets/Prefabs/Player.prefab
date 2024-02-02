@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 970156494332731376}
   - component: {fileID: 5970174858966125227}
   - component: {fileID: 2138105951924373870}
+  - component: {fileID: 8811918115265868467}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -429,7 +430,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82308e0efe9f76542a11c4344b7a484e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swingAnimation: {fileID: 7400000, guid: 2711bf7b8da5d504aba8823d20cd0f47, type: 2}
+  swingSound: {fileID: 8300000, guid: 9a19ec01896b8a143b69eb790c18ffd4, type: 3}
   speed: 5
+  isGrounded: 0
   gravity: -9.8
   jumpHeight: 1.5
   axe: {fileID: 4658775563263885101}
@@ -440,8 +444,6 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 64
-  swingSound: {fileID: 8300000, guid: 9a19ec01896b8a143b69eb790c18ffd4, type: 3}
-  swingAnimation: {fileID: 7400000, guid: 2711bf7b8da5d504aba8823d20cd0f47, type: 2}
   cam: {fileID: 5982676791105650369}
   xSensitivity: 30
   ySensitivity: 30
@@ -568,6 +570,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &8811918115265868467
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5795047624706965670}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.12694752, z: 1}
+  m_Center: {x: 0, y: -0.93652624, z: 0}
 --- !u!1001 &3765721588599351731
 PrefabInstance:
   m_ObjectHideFlags: 0
