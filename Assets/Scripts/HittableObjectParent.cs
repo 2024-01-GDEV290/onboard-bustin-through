@@ -11,10 +11,10 @@ public class HittableObjectParent : MonoBehaviour
     [SerializeField] private List<GameObject> fragments;
 
     [Header("Audio")]
-    public AudioSource audioSource;
-    public AudioClip[] impacts;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] impacts;
 
-    public GameObject shatteredGlass;
+    [SerializeField] private GameObject shatteredGlass;
 
     private void Awake()
     {

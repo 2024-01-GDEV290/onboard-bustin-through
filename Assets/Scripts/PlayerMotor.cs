@@ -2,35 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerAttackState{
+    attacking,
+    ready
+}
 public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
-    private Vector3 playerVelocity;
-    public float speed = 5.0f;
+    
+
+    [Header("Animations")]
     private Animator animator;
+    [SerializeField] private AnimationClip swingAnimation;
+
+    [Header("Audio")]
     private AudioSource audioSource;
+    [SerializeField] private AudioClip swingSound;
+
+    [Header("Walk")]
+    private Vector3 playerVelocity;
+    [SerializeField] private float speed = 5.0f;
 
     [Header("Jump")]
-    private bool isGrounded;
-    public float gravity = -9.8f;
-    public float jumpHeight = 1.5f;
+    [SerializeField] private bool isGrounded;
+    [SerializeField] private float gravity = -9.8f;
+    [SerializeField] private float jumpHeight = 1.5f;
 
     [Header("Attack")]
-    public GameObject axe;
-    public float attackRange = 3f;
-    public float attackDelay = .6f;
-    public float attackSpeed = 1f;
-    public int attackDamage = 1;
-    public LayerMask attackLayer;
-
-    public AudioClip swingSound;
-    public AnimationClip swingAnimation;
-    bool attacking = false;
-    bool readyToAttack = true;
-    int attackCount;
+    [SerializeField] private GameObject axe;
+    [SerializeField] private float attackRange = 3f;
+    [SerializeField] private float attackDelay = .6f;
+    [SerializeField] private float attackSpeed = 1f;
+    [SerializeField] private int attackDamage = 1;
+    [SerializeField] private LayerMask attackLayer;    
+    private PlayerAttackState attackState = PlayerAttackState.ready;
 
     [Header("Camera/Look")]
-    public Camera cam;
+    [SerializeField] private Camera cam;
     private float xRotation = 0.0f;
     public float xSensitivity = 30f;
     public float ySensitivity = 30f;
@@ -86,14 +94,12 @@ public class PlayerMotor : MonoBehaviour
 
     public void Attack()
     {
-        if (!readyToAttack || attacking) return;
-
-        readyToAttack = false;
-        attacking = true;
+        if (attackState != PlayerAttackState.ready) return;
+        attackState = PlayerAttackState.attacking;
         AttackAnimation();
         Invoke(nameof(ResetAttack), attackSpeed);
         Invoke(nameof(AttackRaycast), attackDelay);
-        audioSource.pitch = Random.Range(.9f, 1.1f);
+        audioSource.pitch = Random.Range(.7f, 1.3f);
         audioSource.PlayOneShot(swingSound);
     }
 
@@ -104,8 +110,7 @@ public class PlayerMotor : MonoBehaviour
     }
     private void ResetAttack()
     {
-        attacking = false;
-        readyToAttack = true;
+        attackState = PlayerAttackState.ready;
     }
 
     private void AttackRaycast()
