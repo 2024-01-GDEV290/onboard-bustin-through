@@ -46,7 +46,6 @@ public class HittableObjectParent : MonoBehaviour
             if (rb != null)
             {
                 rb.AddExplosionForce(explosionPower, explosionPos,radius,3.0f);
-                Debug.Log("exploding");
             }
         }
 
