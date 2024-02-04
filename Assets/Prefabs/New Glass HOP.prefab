@@ -46,15 +46,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500cceba2e10c0342ae96c6cb20669fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  glassShatterForceScalar: 0.5
   primaryObject: {fileID: 8154792156925984695}
   fragments: []
+  shatteredGlass: {fileID: 589011825154810405, guid: d264bd24e811b564992359dd94be088c,
+    type: 3}
   audioSource: {fileID: 0}
   impacts:
   - {fileID: 8300000, guid: 3ba0248f47c584e42b4e63e59d26a753, type: 3}
   - {fileID: 8300000, guid: bcb2c6989f947854488c77e37d32e921, type: 3}
   - {fileID: 8300000, guid: 08c47770cfd407d4bbe8e2d6c6e80f7f, type: 3}
-  shatteredGlass: {fileID: 589011825154810405, guid: d264bd24e811b564992359dd94be088c,
-    type: 3}
 --- !u!82 &5009353491939024988
 AudioSource:
   m_ObjectHideFlags: 0
