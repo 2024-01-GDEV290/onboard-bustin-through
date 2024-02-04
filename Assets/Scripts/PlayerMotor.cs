@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+/*using UnityEngine.UIElements;*/
+using UnityEngine.UI;
 
 public enum PlayerAttackState{
     Attacking,
@@ -43,6 +46,8 @@ public class PlayerMotor : MonoBehaviour
     public float xSensitivity = 30f;
     public float ySensitivity = 30f;
 
+    [Header("UI")]
+    [SerializeField] GameObject crosshair;
 
     // Start is called before the first frame update
     void Awake()
@@ -51,11 +56,14 @@ public class PlayerMotor : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         audioSource = GetComponent<AudioSource>();   
     }
-
-    // Update is called once per frame
     void Update()
     {
         isGrounded = controller.isGrounded;
+        
+    }
+    private void FixedUpdate()
+    {
+        SetCrosshairColor();
     }
 
     public void ProcessMove(Vector2 input)
@@ -89,6 +97,19 @@ public class PlayerMotor : MonoBehaviour
         if (isGrounded)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3 * gravity);
+        }
+    }
+
+    public void SetCrosshairColor()
+    {
+        bool validTarget = Physics.Raycast(cam.transform.position, cam.transform.forward, attackRange, attackLayer);
+        if (validTarget)
+        {
+            crosshair.GetComponent<Image>().color = Color.red;
+        }
+        else
+        {
+            crosshair.GetComponent<Image>().color = Color.white;
         }
     }
 
