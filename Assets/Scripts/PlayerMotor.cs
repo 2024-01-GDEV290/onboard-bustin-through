@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum PlayerAttackState{
-    attacking,
-    ready
+    Attacking,
+    Ready
 }
 public class PlayerMotor : MonoBehaviour
 {
@@ -35,7 +35,7 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField] private float attackSpeed = 1f;
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private LayerMask attackLayer;    
-    private PlayerAttackState attackState = PlayerAttackState.ready;
+    private PlayerAttackState attackState = PlayerAttackState.Ready;
 
     [Header("Camera/Look")]
     [SerializeField] private Camera cam;
@@ -94,8 +94,8 @@ public class PlayerMotor : MonoBehaviour
 
     public void Attack()
     {
-        if (attackState != PlayerAttackState.ready) return;
-        attackState = PlayerAttackState.attacking;
+        if (attackState != PlayerAttackState.Ready) return;
+        attackState = PlayerAttackState.Attacking;
         AttackAnimation();
         Invoke(nameof(ResetAttack), attackSpeed);
         Invoke(nameof(AttackRaycast), attackDelay);
@@ -111,7 +111,7 @@ public class PlayerMotor : MonoBehaviour
     }
     private void ResetAttack()
     {
-        attackState = PlayerAttackState.ready;
+        attackState = PlayerAttackState.Ready;
     }
 
     private void PlaySwingSound()
