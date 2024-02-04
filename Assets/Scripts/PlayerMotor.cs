@@ -146,7 +146,6 @@ public class PlayerMotor : MonoBehaviour
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackRange, attackLayer))
         {
             Animator anim = axe.GetComponent <Animator>();
-            anim.SetTrigger("Idle");
             if(hit.transform.TryGetComponent(out HittableObject target)){
                 target.TakeDamage(attackDamage, hit.point, transform.position - cam.transform.forward); // Setting hit origin to a meter behind the player here because we were getting some weirdness with detecting which side of the glass the player was on. It seems to be working the way I want it to now. 
             }
