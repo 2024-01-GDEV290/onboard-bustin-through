@@ -482,8 +482,8 @@ MonoBehaviour:
   gravity: -9.8
   jumpHeight: 1.5
   axe: {fileID: 4658775563263885101}
-  attackRange: 4
-  attackDelay: 0.4
+  attackRange: 2
+  attackDelay: 0.8
   attackSpeed: 1
   attackDamage: 1
   attackLayer:

@@ -736,8 +736,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 970156494332731376, guid: cdbee920261a5ad4d9afcfc10101cd04,
         type: 3}
+      propertyPath: attackDelay
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 970156494332731376, guid: cdbee920261a5ad4d9afcfc10101cd04,
+        type: 3}
       propertyPath: attackRange
-      value: 3
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 970156494332731376, guid: cdbee920261a5ad4d9afcfc10101cd04,
         type: 3}
