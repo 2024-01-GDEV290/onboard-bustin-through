@@ -15,7 +15,7 @@ TagManager:
   - Attack
   - InvisibleWalls
   - Player
-  - 
+  - NoPlayerCollide
   - 
   - 
   - 

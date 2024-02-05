@@ -58,10 +58,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7289919514825993960, guid: ff471c2bfd2b02d4b839424b2c17a718,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2618314910865285855, guid: ff471c2bfd2b02d4b839424b2c17a718,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2347754413368154888, guid: ff471c2bfd2b02d4b839424b2c17a718,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2224041606013799042, guid: ff471c2bfd2b02d4b839424b2c17a718,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ff471c2bfd2b02d4b839424b2c17a718,
         type: 3}
       propertyPath: m_Name
       value: Broken Glass
+      objectReference: {fileID: 0}
+    - target: {fileID: 5933418649935040555, guid: ff471c2bfd2b02d4b839424b2c17a718,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960207656171473769, guid: ff471c2bfd2b02d4b839424b2c17a718,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
