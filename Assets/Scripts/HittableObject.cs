@@ -38,7 +38,6 @@ public class HittableObject : MonoBehaviour
         parent.PlayHitSound();
         currentHealth -= damage;
         ShowDamage(hitPos,hitOrigin);
-        Debug.Log($"{this.name} has taken damage!");
         if (currentHealth <= 0)
         {
             parent.Shatter(hitPos, hitOrigin);

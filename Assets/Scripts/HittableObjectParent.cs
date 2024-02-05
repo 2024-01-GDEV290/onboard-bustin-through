@@ -8,7 +8,6 @@ using UnityEngine.Rendering;
 public class HittableObjectParent : MonoBehaviour
 {
     [Header("Numerical Values")]
-    [SerializeField] float glassShatterForceScalar = 1.0f;
     [SerializeField] float radius = 5.0f;
     [SerializeField] float explosionPower = 450.0f;
 
@@ -54,8 +53,6 @@ public class HittableObjectParent : MonoBehaviour
         {
             shard.gameObject.GetComponent<Rigidbody>().AddForce((hitOrigin - hitLocation) * -glassShatterForceScalar,ForceMode.Impulse);
         }*/
-
-        Debug.Log($"{this.name} has shattered!");
     }
   
 
