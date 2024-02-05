@@ -18,6 +18,7 @@ public class PlayerMotor : MonoBehaviour
     [Header("Audio")]
     private AudioSource audioSource;
     [SerializeField] private AudioClip swingSound;
+    [SerializeField] float swingSoundDelay = .45f;
 
     [Header("Walk")]
     private Vector3 playerVelocity;
@@ -105,7 +106,7 @@ public class PlayerMotor : MonoBehaviour
 
     public void AttackAnimation()
     {
-        Invoke(nameof(PlaySwingSound),.45f);
+        Invoke(nameof(PlaySwingSound),swingSoundDelay);
         Animator anim = axe.GetComponent<Animator>();
         anim.SetTrigger("Attack");
     }
@@ -124,8 +125,6 @@ public class PlayerMotor : MonoBehaviour
         
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackRange, attackLayer))
         {
-            Animator anim = axe.GetComponent <Animator>();
-            anim.SetTrigger("Idle");
             if(hit.transform.TryGetComponent(out HittableObject target)){
                 target.TakeDamage(attackDamage, hit.point, transform.position - cam.transform.forward); // Setting hit origin to a meter behind the player here because we were getting some weirdness with detecting which side of the glass the player was on. It seems to be working the way I want it to now. 
             }
