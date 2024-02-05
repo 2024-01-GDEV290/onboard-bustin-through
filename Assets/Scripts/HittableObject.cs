@@ -1,38 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class HittableObject : MonoBehaviour
 {
-    public int currentHealth;
-    public int maxHealth;
+    public int currentHealth = 0;
+    public int maxHealth = 3;
+    [SerializeField] private Material transparentMaterial;
 
-    [Header("Audio")]
-    public AudioClip[] impacts;
+    [SerializeField] private GameObject hitDecal; // This should be a prefab made up of two quads facing opposite directions with a transparent texture on each
+    public HittableObjectParent parent;
+
     // Start is called before the first frame update
     void Awake()
     {
+        parent = transform.parent.GetComponent<HittableObjectParent>();
         currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
-    public void TakeDamage(int damage)
+    public void ShowDamage(Vector3 pos, Vector3 hitOrigin) 
     {
+        GameObject decal = Instantiate(hitDecal, pos, Quaternion.identity);
+        decal.transform.SetParent(transform);
+        Vector3 diff = hitOrigin - pos;
+        if (Vector3.Angle(diff, pos) > 90){
+            // Orienting the decal to the correct direction so the particle system is facing towards the side the player is on. 
+            decal.transform.localEulerAngles = new Vector3(-90, 0, 0);
+        } else
+        {
+            decal.transform.localEulerAngles = new Vector3(90, 0, 0);
+        }
+    }
+
+    public void TakeDamage(int damage, Vector3 hitPos, Vector3 hitOrigin)
+    {
+        parent.PlayHitSound();
         currentHealth -= damage;
-
-        Debug.Log($"{this.name} has taken damage!");
-        if (currentHealth <= 0 ) {
-            Death();
-                }
-    }
-    void Death()
-    {
-        // Replace this with whatever we make the breaking behavior
-        Destroy(gameObject);
+        ShowDamage(hitPos,hitOrigin);
+        if (currentHealth <= 0)
+        {
+            parent.Shatter(hitPos, hitOrigin);
+        }
     }
 
-    public AudioClip GetCurrentImpactSound()
-    {
-        return impacts[maxHealth - currentHealth];
-    }
 }
