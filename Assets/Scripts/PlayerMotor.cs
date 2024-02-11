@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PlayerAttackState{
     Attacking,
@@ -102,6 +104,11 @@ public class PlayerMotor : MonoBehaviour
         Invoke(nameof(AttackRaycast), attackDelay);
         audioSource.pitch = Random.Range(.7f, 1.3f);
         
+    }
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void AttackAnimation()
